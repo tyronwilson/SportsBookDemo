@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Kaazing SportsBook: Admin</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="lib/jquery-2.1.1.min.js"></script>
+    	<script src="lib/bootstrap.min.js"></script>
+		<script src="lib/modernizr.custom.11310.js"></script>
+		
+		<script src="js/admin.js"></script>
+		
+		<!--  Kaazing scripts -->
+        <script src="lib/WebSocket.js"></script>
+        <script src="jms/JmsClient.js"></script>
+        
+        <link rel="stylesheet" href="css/sportsbook.css">
+		
+		<!-- Graphic scripts -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/Script.js"></script>
+		
+		<!-- Profiler scripts -->
+		<script src="js/jmsWebSocketProfiler.js"></script>
+
+	</head>
+	
+	<body>
+    <div id="overallContainer">
+			<header>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: left;" alt="Kaazing" class="img-responsive">
+        		<h1 class="text-center">Kaazing SportsBook</h1>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: right;top: -6vw;" alt="Kaazing" class="img-responsive">
+					<h2 class="text-center">In-Play Demo Administration: Welcome <b id="clientid"></b></h2>
+			</header>
+  		</div>
+  		<br>
+  		<div id="leftsection">
+  			<h1>Choose A Sport</h1>
+  			<div id='cssmenu'>
+  				<ul>
+     				<li class='has-sub'><a href='#'><span>Football</span></a>
+     					<ul class="list-group">
+     						<li class="list-group-item" id="EP"><a href='#' onClick="subscribe('Football','English_Premiership');"><span>English Premiership</span></a></li>
+         					<li class="list-group-item" id="EC"><a href='#' onClick="subscribe('Football','English_Championship');"><span>English Championship</span></a></li>
+         					<li class="list-group-item" id="ELO"><a href='#' onClick="subscribe('Football','English_League_One');"><span>English League One</span></a></li>
+        					<li class="list-group-item" id="ELT"><a href='#' onClick="subscribe('Football','English_League_Two');"><span>English League Two</span></a></li>
+         				</ul>
+         			</li>
+     				<li class='has-sub'><a href='#'><span>Rugby</span></a>
+        				<ul class="list-group">
+           					<li class="list-group-item" id="AP"><a href='#' onClick="subscribe('Rugby','Aviva_Premiership');"><span>Aviva Premiership</span></a></li>
+         					<li class="list-group-item" id="FTF"><a href='#' onClick="subscribe('Rugby','Top_14');"><span>French Top 14</span></a></li>
+         					<li class="list-group-item" id="SF"><a href='#' onClick="subscribe('Rugby','Super_15');"><span>Super 15</span></a></li>
+       					</ul>
+     				</li>
+     				<li class='has-sub'><a href='#' ><span>Cricket</span></a>
+        				<ul class="list-group">
+          					<li class="list-group-item" id="CC"><a href='#' onClick="subscribe('Cricket','County_Cricket');"><span>County Cricket</span></a></li>
+         					<li class="list-group-item" id="NTT"><a href='#' onClick="subscribe('Cricket','Natwest_T20');"><span>Natwest T20 Blast</span></a></li>
+        				</ul>
+     				</li>
+  				</ul>
+  			</div>
+		  </div>
+		
+		<div id="mainsection">
+			<div class="table-responsive">
+        		<h1>Events</h1>
+				<table id="sportTable">
+               		<tr>
+                		<th class="event">Match</th>
+             			<th class="home">Home</th>
+               			<th class="draw">Draw</th>
+              			<th class="away">Away</th>
+           			</tr>
+           		</table>
+           	</div>	
+		</div>
+		
+		<div id="rightsection">
+			<div id="summary" class="table-responsive">
+           		<h1>Profile Stats</h1>
+				<table class="profileTable" id="profileTable" border="0">
+				</table>
+			</div>
+			<h1>Admin</h1>
+			<div class="table-responsive">
+				<table id="frequencyTable" style="float: float">
+					<tr>
+						<th class="admin">Message Rate:
+							<select id="rateSelect">
+  								<option>10</option>
+  								<option>100</option>
+  								<option>1000</option>
+  								<option>5000</option>
+  								<option>10000</option>
+							</select>
+               			</th>
+              	
+             			<th class="admin">
+              				<input type="button" class="btn btn-info" onclick='changeFrequency()' value="Change Frequency">
+               			</th>
+               		</tr>
+               		<tr>
+               			<th class="admin">Switch On /Off Deltas:</th>
+               			<th class="admin">
+               				<input type="checkbox" id='delta' name="delta" onclick='deltaMessages()'>
+               			</th>
+               		</tr>
+               	</table>
+			</div>
+			<div class="table-responsive">	
+				<table id="suspendTable" style="float: left; width:47%;">
+           			<tr>
+               			<th class="suspend">Suspend Match</th>
+          			</tr>
+          		</table>
+          		<table id="revertTable" style="float: left; width:47%;">
+           			<tr>
+               			<th class="suspend">Revert Match</th>
+          			</tr>
+          		</table>
+          	</div>
+		</div>
+			
+	
+		<footer>
+			<h2>Copyright © 2007-2015 Kaazing Corporation</h2>
+		</footer>
+		<script>
+        // Check for required functionality
+        	(function () {
+           	 	var hasRequired =  !!(Modernizr.svg && JSON && Array.prototype.forEach && document.querySelector);
+            	var startupBlock = document.getElementById('startup');
+            	if (!hasRequired) {
+                	startupBlock.classList.add('bg-danger');
+                	startupBlock.innerHTML = 'Your browser is not modern enough to run this application (requires <a href="http://caniuse.com/#feat=svg">SVG</a>, <a href="http://kangax.github.io/compat-table/es5/">ES5</a> and <a href="http://caniuse.com/#feat=queryselector">querySelector</a>)';
+                	startupBlock.style.display = 'block';
+           	 	} else {
+                	Modernizr.load([
+                    	{load: ['lib/d3.v3.min.js']}]);
+            	}
+
+        	})();
+    	</script>
+	</body>
+</html>

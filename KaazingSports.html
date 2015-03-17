@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Kaazing SportsBook: Client</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="lib/jquery-2.1.1.min.js"></script>
+    	<script src="lib/bootstrap.min.js"></script>
+		<script src="lib/modernizr.custom.11310.js"></script>
+		
+		<script src="js/sportsbook.js"></script>
+		
+		<!--  Kaazing scripts -->
+        <script src="lib/WebSocket.js"></script>
+        <script src="jms/JmsClient.js"></script>
+        
+        <link rel="stylesheet" href="css/sportsbook.css">
+		
+		<!-- Graphic scripts -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/Script.js"></script>
+
+	</head>
+	
+	<body>
+    <div id="overallContainer">
+			<header>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: left;" alt="Kaazing" class="img-responsive">
+        <h1 class="text-center">Kaazing SportsBook</h1>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: right;top: -6vw;" alt="Kaazing" class="img-responsive">
+				<h2 class="text-center">In-Play Demo: Welcome <b id="clientid"></b></h2>
+			</header>
+  		</div>
+  		<br>
+  		<div id="leftsection">
+  			<h1>Choose A Sport</h1>
+  			<div id='cssmenu'>
+  				<ul>
+     					<li class='has-sub'><a href='#'><span>Football</span></a>
+     						<ul class="list-group">
+     							<li class="list-group-item" id="EP"><a href='#' onClick="subscribe('Football','English_Premiership');"><span>English Premiership</span></a></li>
+         						<li class="list-group-item" id="EC"><a href='#' onClick="subscribe('Football','English_Championship');"><span>English Championship</span></a></li>
+         						<li class="list-group-item" id="ELO"><a href='#' onClick="subscribe('Football','English_League_One');"><span>English League One</span></a></li>
+        						<li class="list-group-item" id="ELT"><a href='#' onClick="subscribe('Football','English_League_Two');"><span>English League Two</span></a></li>
+         					</ul>
+         				</li>
+     					<li class='has-sub'><a href='#'><span>Rugby</span></a>
+        					<ul class="list-group">
+           					<li class="list-group-item" id="AP"><a href='#' onClick="subscribe('Rugby','Aviva_Premiership');"><span>Aviva Premiership</span></a></li>
+         						<li class="list-group-item" id="FTF"><a href='#' onClick="subscribe('Rugby','Top_14');"><span>French Top 14</span></a></li>
+         						<li class="list-group-item" id="SF"><a href='#' onClick="subscribe('Rugby','Super_15');"><span>Super 15</span></a></li>
+       					</ul>
+     					</li>
+     					<li class='has-sub'><a href='#' ><span>Cricket</span></a>
+        					<ul class="list-group">
+          					<li class="list-group-item" id="CC"><a href='#' onClick="subscribe('Cricket','County_Cricket');"><span>County Cricket</span></a></li>
+         						<li class="list-group-item" id="NTT"><a href='#' onClick="subscribe('Cricket','Natwest_T20');"><span>Natwest T20 Blast</span></a></li>
+        					</ul>
+     					</li>
+  				</ul>
+  			</div>
+		  </div>
+		
+		<div id="mainsection">
+			<div class="table-responsive">
+        <h1>Events</h1>
+				<table id="sportTable">
+               		<tr>
+                		<th class="event">Match</th>
+             			<th class="home">Home</th>
+               			<th class="draw">Draw</th>
+              			<th class="away">Away</th>
+           			</tr>
+           		</table>
+           	</div>
+		</div>
+		
+		<div id="rightsection">
+			<div class="table-responsive">
+				<h1>Bet Slip</h1>
+				<table id="betSlipTable">
+               		<tr>
+                 		<th class="match">Match</th>
+           				<th class="selection">Bet</th>
+            			<th class="price">Price</th>
+       					<th class="lay">Stake</th>
+       					<th class="winamount">Win Estimate</th>
+           			</tr>
+           		</table>
+           	</div>
+           	<br>
+           	<h1>Bet Submit</h1>
+           	<div class="table-responsive">
+        		<table id="submitTable" style="background-color: #DDD;">
+            		<tr>
+               			<th class="a">
+               				<input type="checkbox" id='accumulator' name="accumulator" onclick='checkBetFields()' value="Accumulator">Accumulator:
+               				<input type='text' id='accumulatoramount'  onchange='calculateAccumulator()' name='accumulatorAmount' value='£0.00' disabled>
+               			</th>
+               			<th class="a">Estimated Win:
+               				<input type='text' id='estimatedwin' name='estimatedWin' value='£0.00' disabled>
+              			</th>
+             			<th class="a">
+              				<input type="button" class="btn btn-info" onclick='submitBet()' value="Submit Bet" style="position: relative; top: -3px; background-color:#F47D31">
+                      <img src="images/SubmitArrow.png" width="20px" style="position:relative; top:2px; border:0; valign:bottom" onclick="submitBet()">
+               			</th>
+               		</tr>
+           		</table>
+           	</div>
+           	<br>
+           	<h1>Bet History</h1>
+           	<div class="table-responsive">
+        		<table id="betHistoryTable">
+            		<tr>
+               			<th class="bet">Submitted Bets</th>
+               			<th class="betaccumulator">Accumulator</th>
+               			<th class="betamount">Win Amount</th>
+               		</tr>
+           		</table>
+           	</div>
+		</div>
+			
+	
+		<footer>
+			<h2>Copyright © 2007-2015 Kaazing Corporation</h2>
+		</footer>
+  	</div>
+</body>
+</html>

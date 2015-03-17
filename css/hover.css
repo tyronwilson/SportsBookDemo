@@ -1,0 +1,29 @@
+table {
+	display: block;
+	background-color: white;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	-webkit-box-shadow: 2px 2px 20px #888;
+	-moz-box-shadow: 2px 2px 20px #888;
+
+}
+
+td {
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	background-color: #F47D31;
+	margin: 1vw;
+}
+
+rightsection td {
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	background-color: #F47D31;
+	margin: 1vw;
+}
+
+td.home:hover, td.draw:hover, td.away:hover {
+	background-color: #3997C9;
+}
+

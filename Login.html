@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Kaazing SportsBook: Login</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="lib/jquery-2.1.1.min.js"></script>
+    	<script src="lib/bootstrap.min.js"></script>
+		<script src="lib/modernizr.custom.11310.js"></script>
+		
+		<script src="js/login.js"></script>
+		
+		<!--  Kaazing scripts -->
+        <script src="lib/WebSocket.js"></script>
+        <script src="jms/JmsClient.js"></script>
+        
+        <link rel="stylesheet" href="css/sportsbook.css">
+		
+		<!-- Graphic scripts -->
+		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+		<script src="js/Script.js"></script>
+
+	</head>
+	
+	<body>
+    <div id="overallContainer">
+			<header>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: left;" alt="Kaazing" class="img-responsive">
+        <h1 class="text-center">Kaazing SportsBook</h1>
+				<img src="images/Kaazing_logo.png" style="width:7vw;position: relative;float: right;top: -6vw;" alt="Kaazing" class="img-responsive">
+				<h2 class="text-center">In-Play Demo Login</h2>
+			</header>
+  		</div>
+  		<br>
+		
+		<div id="mainsection">
+        	<h1>Please login</h1>
+           	<div>
+           		Username: <input type='text' id='username' name='username' >
+           		Password: <input type='password' id='password' name='password' >
+           	</div>
+           	<input type="button" class="btn btn-info" onclick='handleConnect()' value="Login" style="position: relative; top: -3px; background-color:#F47D31; font-size: 1.2vw">
+           	<h6 style="color:black">Login as yourself if you are a punter.
+           	Login as Admin if you want to access Adminstration.</h6>
+		</div>
+		<footer>
+			<h2>Copyright © 2007-2015 Kaazing Corporation</h2>
+		</footer>
+	</body>
+</html>
