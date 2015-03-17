@@ -4,7 +4,7 @@ This is a SportsBook Demo that demonstrates the delivery of real-time pricing od
 
 # Installation
 
-The SportsBookData.jar file can be copied to any location locally as long as you have access to the location and the file.
+The SportsBookData.jar file is the data generator and it needs to be copied to a location that can be accessed and has the admin rights to run a java application using the java -jar command.
 
 Navigate to the following directory where the instance of the KAAZING Gateway has been installed and create a new folder called SportsBook :
 
@@ -24,12 +24,11 @@ Copy all the application source code, including folders and folder contents into
 # Running Locally
 
 Ensure you have ActiveMQ installed and is running, this comes with the product. 
-Ensure you have the latest version of KAAZING Gateway installed and running.
+Ensure you have at least the 4.0.6 KAAZING Gateway version installed and running.
 
-To start the data feed, open a command prompt and navigate to the location of the SportsBookData jar file, issue the following command:
+To start the data feed, open a command prompt and navigate to the location of the SportsBookData jar file, then issue the following command to initialise the generator:
 
     java -jar SportsBookData.jar. 
-    This will initialise the data feed.
 
 The URL to run the application will be:
 
