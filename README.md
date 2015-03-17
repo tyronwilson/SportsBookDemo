@@ -4,11 +4,22 @@ This is a SportsBook Demo that demonstrates the delivery of real-time pricing od
 
 # Installation
 
-The SportsBook.jar file can be copied to any location locally as long as you have access to the location and the file.
+The SportsBookData.jar file can be copied to any location locally as long as you have access to the location and the file.
 
-Navigate to the location where KAAZING Gateway has been installed and copy the SportsBook folder and all it's contents here:
+Navigate to the following directory where the instance of the KAAZING Gateway has been installed and create a new folder called SportsBook :
 
-    /web/extras/demo/jms folder.
+    /web/extras/demo/jms/SportsBook
+    
+Copy all the application source code, including folders and folder contents into this SportsBook folder. You should have a SportsBook folder structure as below:
+
+    css
+    images
+    jms
+    js
+    lib
+    Admin.html
+    KaazingSports.html
+    login.html
 
 # Running Locally
 
@@ -17,7 +28,8 @@ Ensure you have the latest version of KAAZING Gateway installed and running.
 
 To start the data feed, open a command prompt and navigate to the location of the SportsBookData jar file, issue the following command:
 
-    java -jar SportsBookData.jar. This will initialise the data feed.
+    java -jar SportsBookData.jar. 
+    This will initialise the data feed.
 
 The URL to run the application will be:
 
