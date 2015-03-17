@@ -19,7 +19,7 @@ Copy all the application source code, including folders and folder contents into
     lib
     Admin.html
     KaazingSports.html
-    login.html
+    Login.html
 
 # Running Locally
 
@@ -28,7 +28,7 @@ Ensure you have at least the 4.0.6 KAAZING Gateway version installed and running
 
 To start the data feed, open a command prompt and navigate to the location of the SportsBookData jar file, then issue the following command to initialise the generator:
 
-    java -jar SportsBookData.jar. 
+    java -jar SportsBookData.jar
 
 The URL to run the application will be:
 
